@@ -1,10 +1,8 @@
 package com.demo.test;
 
 
-import java.util.HashMap;
+import java.util.Date;
 import java.util.List;
-import java.util.Map;
-
 import javax.annotation.Resource;
 
 import org.junit.Test;
@@ -13,8 +11,9 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.github.pagehelper.PageHelper;
-import com.github.pagehelper.PageInfo;
 import com.ssm.domain.Article;
+import com.ssm.domain.ArticleCategory;
+import com.ssm.service.ArticleCategoryService;
 import com.ssm.service.ArticleService;
 
 
@@ -26,7 +25,37 @@ public class BeanViewTest
 
 	@Resource
 	private ArticleService service;
-	@Test  
+	
+	@Resource
+	private ArticleCategoryService categoryService;
+	
+	/*@Test
+	public void testAdd(){
+		Article article = new Article();
+		article.setAuthor("test");
+		article.setContent("a");
+		article.setTitle("a1");
+		article.setCreateDate(new Date());
+		article.setModifyDate(new Date());
+		ArticleCategory category = this.categoryService.selectByPrimaryKey(1L);
+		article.setCategory(category);
+		int i =this.service.insertSelective(article);
+		System.out.println(i);
+	}*/
+	
+	@Test
+	public void testUpdate(){
+		Article article = this.service.selectByPrimaryKey(1L);
+		article.setAuthor("test");
+		article.setContent("a");
+		article.setTitle("a1");
+		article.setCreateDate(new Date());
+		article.setModifyDate(new Date());
+		int i =this.service.updateByPrimaryKey(article);
+		System.out.println(i);
+	}
+	
+	/*@Test  
     public void testGet(){  
          
 		int pageNum = 1;
@@ -39,11 +68,11 @@ public class BeanViewTest
             System.out.println(ov.getCreateDate());  
             System.out.println(ov.getTitle()); 
         }
-		/*Article article = this.service.selectByPrimaryKey(9L);
+		Article article = this.service.selectByPrimaryKey(9L);
 		System.out.println(article.getTitle());
-		//System.out.println(article.getCreateDate());
+		System.out.println(article.getCreateDate());
 		System.out.println(article.getCategory().getName());
-		//System.out.println(this.service.selectAll().size()); 
-		*/
-    }  
+		System.out.println(this.service.selectAll().size()); 
+		
+    }  */
 }

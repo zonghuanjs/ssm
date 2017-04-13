@@ -16,11 +16,47 @@ public class ArticleServiceImpl implements ArticleService{
 
 	@Resource
 	private ArticleMapper dao;
-	
+
+	@Override
+	public int deleteByPrimaryKey(Long id) {
+		// TODO Auto-generated method stub
+		return dao.deleteByPrimaryKey(id);
+	}
+
+	@Override
+	public int insert(Article record) {
+		// TODO Auto-generated method stub
+		return dao.insert(record);
+	}
+
+	@Override
+	public int insertSelective(Article record) {
+		// TODO Auto-generated method stub
+		return dao.insertSelective(record);
+	}
+
 	@Override
 	public Article selectByPrimaryKey(Long id) {
 		// TODO Auto-generated method stub
 		return dao.selectByPrimaryKey(id);
+	}
+
+	@Override
+	public int updateByPrimaryKeySelective(Article record) {
+		// TODO Auto-generated method stub
+		return dao.updateByPrimaryKeySelective(record);
+	}
+
+	@Override
+	public int updateByPrimaryKeyWithBLOBs(Article record) {
+		// TODO Auto-generated method stub
+		return dao.updateByPrimaryKeyWithBLOBs(record);
+	}
+
+	@Override
+	public int updateByPrimaryKey(Article record) {
+		// TODO Auto-generated method stub
+		return dao.updateByPrimaryKey(record);
 	}
 
 	@Override

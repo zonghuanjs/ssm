@@ -1,0 +1,11 @@
+/Users/zonghuan/Documents/workspace/ssm/src/main/java/com/ssm/service/ArticleService.java
+/Users/zonghuan/Documents/workspace/ssm/src/main/java/com/ssm/domain/Article.java
+/Users/zonghuan/Documents/workspace/ssm/src/main/java/com/ssm/service/ArticleCategoryService.java
+/Users/zonghuan/Documents/workspace/ssm/src/main/java/com/ssm/service/impl/ArticleServiceImpl.java
+/Users/zonghuan/Documents/workspace/ssm/src/main/java/com/ssm/service/impl/BaseServiceImpl.java
+/Users/zonghuan/Documents/workspace/ssm/src/main/java/com/ssm/dao/ArticleMapper.java
+/Users/zonghuan/Documents/workspace/ssm/src/main/java/com/ssm/domain/ArticleCategory.java
+/Users/zonghuan/Documents/workspace/ssm/src/main/java/com/ssm/service/impl/ArticleCategoryServiceImpl.java
+/Users/zonghuan/Documents/workspace/ssm/src/main/java/com/ssm/pager/Pager.java
+/Users/zonghuan/Documents/workspace/ssm/src/main/java/com/ssm/service/BaseService.java
+/Users/zonghuan/Documents/workspace/ssm/src/main/java/com/ssm/dao/ArticleCategoryMapper.java

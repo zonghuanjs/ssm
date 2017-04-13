@@ -154,14 +154,14 @@
         #{title,jdbcType=VARCHAR},
       </if>
       <if test="category != null" >
-        #{category,jdbcType=BIGINT},
+        #{category.id,jdbcType=BIGINT},
       </if>
       <if test="content != null" >
         #{content,jdbcType=LONGVARCHAR},
       </if>
     </trim>
   </insert>
-  <!-- <update id="updateByPrimaryKeySelective" parameterType="com.demo1.domain.Article" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.ssm.domain.Article" >
     update tb_article
     <set >
       <if test="createDate != null" >
@@ -195,7 +195,7 @@
         title = #{title,jdbcType=VARCHAR},
       </if>
       <if test="category != null" >
-        category = #{category,jdbcType=BIGINT},
+        category = #{category.id,jdbcType=BIGINT},
       </if>
       <if test="content != null" >
         content = #{content,jdbcType=LONGVARCHAR},
@@ -203,7 +203,7 @@
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.demo1.domain.Article" >
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.ssm.domain.Article" >
     update tb_article
     set create_date = #{createDate,jdbcType=TIMESTAMP},
       modify_date = #{modifyDate,jdbcType=TIMESTAMP},
@@ -215,11 +215,11 @@
       seo_keywords = #{seoKeywords,jdbcType=VARCHAR},
       seo_title = #{seoTitle,jdbcType=VARCHAR},
       title = #{title,jdbcType=VARCHAR},
-      category = #{category,jdbcType=BIGINT},
+      category = #{category.id,jdbcType=BIGINT},
       content = #{content,jdbcType=LONGVARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.demo1.domain.Article" >
+  <update id="updateByPrimaryKey" parameterType="com.ssm.domain.Article" >
     update tb_article
     set create_date = #{createDate,jdbcType=TIMESTAMP},
       modify_date = #{modifyDate,jdbcType=TIMESTAMP},
@@ -231,7 +231,7 @@
       seo_keywords = #{seoKeywords,jdbcType=VARCHAR},
       seo_title = #{seoTitle,jdbcType=VARCHAR},
       title = #{title,jdbcType=VARCHAR},
-      category = #{category,jdbcType=BIGINT}
+      category = #{category.id,jdbcType=BIGINT}
     where id = #{id,jdbcType=BIGINT}
-  </update> -->
+  </update>
 </mapper>

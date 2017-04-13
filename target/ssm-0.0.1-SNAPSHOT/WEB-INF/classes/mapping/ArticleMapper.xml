@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ssm.dao.ArticleMapper" >
+  <resultMap id="BaseResultMap" type="com.ssm.domain.Article" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="modify_date" property="modifyDate" jdbcType="TIMESTAMP" />
+    <result column="author" property="author" jdbcType="VARCHAR" />
+    <result column="hits" property="hits" jdbcType="BIGINT" />
+    <result column="publication" property="publication" jdbcType="BIT" />
+    <result column="top" property="top" jdbcType="BIT" />
+    <result column="seo_description" property="seoDescription" jdbcType="VARCHAR" />
+    <result column="seo_keywords" property="seoKeywords" jdbcType="VARCHAR" />
+    <result column="seo_title" property="seoTitle" jdbcType="VARCHAR" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <!-- <association property="category" javaType="com.demo1.domain.ArticleCategory">
+    	<id property="id" column="id"/>
+        <result property="name" column="name"/>
+    </association> -->
+    <association column="category" property="category" select="com.ssm.dao.ArticleCategoryMapper.selectByPrimaryKey"/>
+    	
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.ssm.domain.Article" extends="BaseResultMap" >
+    <result column="content" property="content" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <resultMap id="PagerResultMap" type="com.ssm.pager.Pager">
+    <result column="page_size" property="pageSize" jdbcType="INTEGER" />
+    <result column="current_idx" property="currentIdx" jdbcType="INTEGER" />
+    <result column="total_count" property="totalCount" jdbcType="INTEGER" />
+    <result column="page_count" property="pageCount" jdbcType="INTEGER" />
+    <result column="orders" property="orders" jdbcType="INTEGER" />
+  </resultMap>
+  <!-- <sql id="Base_Column_List" >
+    id, create_date, modify_date, author, hits, publication, top, seo_description, seo_keywords, 
+    seo_title, title, category
+  </sql>
+  <sql id="Blob_Column_List" >
+    content
+  </sql> -->
+  <!-- <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Long" >
+    select 
+    *
+    from tb_article a, tb_article_category ac
+    where a.id = #{id,jdbcType=BIGINT} and a.category=ac.id
+  </select> -->
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Long" >
+    select 
+    *
+    from tb_article 
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <select id="selectAll" resultMap="ResultMapWithBLOBs" >
+    select 
+    *
+    from tb_article     
+  </select>
+  <select id="findByPager" resultType="com.ssm.pager.Pager" parameterType="com.ssm.pager.Pager" >
+    select 
+    *
+    from tb_article     
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from tb_article
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.ssm.domain.Article" >
+    insert into tb_article (id, create_date, modify_date, 
+      author, hits, publication, 
+      top, seo_description, seo_keywords, 
+      seo_title, title, category, 
+      content)
+    values (#{id,jdbcType=BIGINT}, #{createDate,jdbcType=TIMESTAMP}, #{modifyDate,jdbcType=TIMESTAMP}, 
+      #{author,jdbcType=VARCHAR}, #{hits,jdbcType=BIGINT}, #{publication,jdbcType=BIT}, 
+      #{top,jdbcType=BIT}, #{seoDescription,jdbcType=VARCHAR}, #{seoKeywords,jdbcType=VARCHAR}, 
+      #{seoTitle,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, #{category.id,jdbcType=BIGINT}, 
+      #{content,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ssm.domain.Article" >
+    insert into tb_article
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="createDate != null" >
+        create_date,
+      </if>
+      <if test="modifyDate != null" >
+        modify_date,
+      </if>
+      <if test="author != null" >
+        author,
+      </if>
+      <if test="hits != null" >
+        hits,
+      </if>
+      <if test="publication != null" >
+        publication,
+      </if>
+      <if test="top != null" >
+        top,
+      </if>
+      <if test="seoDescription != null" >
+        seo_description,
+      </if>
+      <if test="seoKeywords != null" >
+        seo_keywords,
+      </if>
+      <if test="seoTitle != null" >
+        seo_title,
+      </if>
+      <if test="title != null" >
+        title,
+      </if>
+      <if test="category != null" >
+        category,
+      </if>
+      <if test="content != null" >
+        content,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyDate != null" >
+        #{modifyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="author != null" >
+        #{author,jdbcType=VARCHAR},
+      </if>
+      <if test="hits != null" >
+        #{hits,jdbcType=BIGINT},
+      </if>
+      <if test="publication != null" >
+        #{publication,jdbcType=BIT},
+      </if>
+      <if test="top != null" >
+        #{top,jdbcType=BIT},
+      </if>
+      <if test="seoDescription != null" >
+        #{seoDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="seoKeywords != null" >
+        #{seoKeywords,jdbcType=VARCHAR},
+      </if>
+      <if test="seoTitle != null" >
+        #{seoTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="category != null" >
+        #{category.id,jdbcType=BIGINT},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ssm.domain.Article" >
+    update tb_article
+    <set >
+      <if test="createDate != null" >
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyDate != null" >
+        modify_date = #{modifyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="author != null" >
+        author = #{author,jdbcType=VARCHAR},
+      </if>
+      <if test="hits != null" >
+        hits = #{hits,jdbcType=BIGINT},
+      </if>
+      <if test="publication != null" >
+        publication = #{publication,jdbcType=BIT},
+      </if>
+      <if test="top != null" >
+        top = #{top,jdbcType=BIT},
+      </if>
+      <if test="seoDescription != null" >
+        seo_description = #{seoDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="seoKeywords != null" >
+        seo_keywords = #{seoKeywords,jdbcType=VARCHAR},
+      </if>
+      <if test="seoTitle != null" >
+        seo_title = #{seoTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null" >
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="category != null" >
+        category = #{category.id,jdbcType=BIGINT},
+      </if>
+      <if test="content != null" >
+        content = #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.ssm.domain.Article" >
+    update tb_article
+    set create_date = #{createDate,jdbcType=TIMESTAMP},
+      modify_date = #{modifyDate,jdbcType=TIMESTAMP},
+      author = #{author,jdbcType=VARCHAR},
+      hits = #{hits,jdbcType=BIGINT},
+      publication = #{publication,jdbcType=BIT},
+      top = #{top,jdbcType=BIT},
+      seo_description = #{seoDescription,jdbcType=VARCHAR},
+      seo_keywords = #{seoKeywords,jdbcType=VARCHAR},
+      seo_title = #{seoTitle,jdbcType=VARCHAR},
+      title = #{title,jdbcType=VARCHAR},
+      category = #{category.id,jdbcType=BIGINT},
+      content = #{content,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ssm.domain.Article" >
+    update tb_article
+    set create_date = #{createDate,jdbcType=TIMESTAMP},
+      modify_date = #{modifyDate,jdbcType=TIMESTAMP},
+      author = #{author,jdbcType=VARCHAR},
+      hits = #{hits,jdbcType=BIGINT},
+      publication = #{publication,jdbcType=BIT},
+      top = #{top,jdbcType=BIT},
+      seo_description = #{seoDescription,jdbcType=VARCHAR},
+      seo_keywords = #{seoKeywords,jdbcType=VARCHAR},
+      seo_title = #{seoTitle,jdbcType=VARCHAR},
+      title = #{title,jdbcType=VARCHAR},
+      category = #{category.id,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

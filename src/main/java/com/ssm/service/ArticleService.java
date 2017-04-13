@@ -16,9 +16,21 @@ import com.ssm.pager.Pager;
 public interface ArticleService
 {
 
-	 Article selectByPrimaryKey(Long id);
-	 
-	 List<Article> selectAll();
-	 
-	 Pager<Article> findByPager(Pager<Article> pager);
+	int deleteByPrimaryKey(Long id);
+
+    int insert(Article record);
+
+    int insertSelective(Article record);
+
+    Article selectByPrimaryKey(Long id);
+
+    int updateByPrimaryKeySelective(Article record);
+
+    int updateByPrimaryKeyWithBLOBs(Article record);
+
+    int updateByPrimaryKey(Article record);
+    
+    List<Article> selectAll();
+    
+    Pager<Article> findByPager(Pager<Article> pager);
 }
