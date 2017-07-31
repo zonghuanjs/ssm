@@ -45,14 +45,15 @@ public class BeanViewTest
 	
 	@Test
 	public void testUpdate(){
-		Article article = this.service.selectByPrimaryKey(1L);
-		article.setAuthor("test");
+		Article article = this.service.selectByPrimaryKey(2L);
+		/*article.setAuthor("test");
 		article.setContent("a");
 		article.setTitle("a1");
 		article.setCreateDate(new Date());
 		article.setModifyDate(new Date());
 		int i =this.service.updateByPrimaryKey(article);
-		System.out.println(i);
+		System.out.println(i);*/
+		System.out.println(article.getCategory().getName());
 	}
 	
 	/*@Test  

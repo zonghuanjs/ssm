@@ -5,19 +5,21 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 import com.ssm.dao.ArticleCategoryMapper;
+import com.ssm.dao.BaseMapper;
 import com.ssm.domain.ArticleCategory;
 import com.ssm.service.ArticleCategoryService;
 
 @Service
-public class ArticleCategoryServiceImpl implements ArticleCategoryService{
+public class ArticleCategoryServiceImpl extends BaseServiceImpl<Long, ArticleCategory> implements ArticleCategoryService{
 
 	@Resource
 	private ArticleCategoryMapper dao;
-	
-	@Override
-	public ArticleCategory selectByPrimaryKey(Long id) {
+
+	@Resource
+	public void setDao(BaseMapper<Long, ArticleCategory> dao) {
 		// TODO Auto-generated method stub
-		return dao.selectByPrimaryKey(id);
+		super.setDao(this.dao);
 	}
+	
 
 }

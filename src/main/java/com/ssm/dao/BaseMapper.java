@@ -1,12 +1,11 @@
-package com.ssm.service;
+package com.ssm.dao;
 
 import java.io.Serializable;
 import java.util.List;
-
 import com.ssm.pager.Pager;
 
-public interface BaseService<PK extends Serializable, T> {
-
+public interface BaseMapper<PK extends Serializable, T> {
+	
 	int deleteByPrimaryKey(PK id);
 
 	int insert(T record);
@@ -24,4 +23,5 @@ public interface BaseService<PK extends Serializable, T> {
 	List<T> selectAll();
 
 	Pager<T> findByPager(Pager<T> pager);
+
 }
